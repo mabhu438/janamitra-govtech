@@ -308,16 +308,16 @@ export function applySettings(settings: Settings) {
   if (typeof document === "undefined") return;
   const root = document.documentElement;
   root.classList.toggle("dark", settings.theme === "dark");
-  root.dataset.text = settings.textSize;
+  root.dataset["text"] = settings.textSize;
   if (settings.contrast) {
-    root.dataset.contrast = "high";
+    root.dataset["contrast"] = "high";
   } else {
-    delete root.dataset.contrast;
+    delete root.dataset["contrast"];
   }
   if (settings.reduceMotion) {
-    root.dataset.motion = "reduced";
+    root.dataset["motion"] = "reduced";
   } else {
-    delete root.dataset.motion;
+    delete root.dataset["motion"];
   }
 }
 

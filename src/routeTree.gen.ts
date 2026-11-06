@@ -10,13 +10,22 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AskRouteImport } from './routes/ask'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as FeeguardRouteImport } from './routes/feeguard'
+import { Route as GuestRouteImport } from './routes/guest'
+import { Route as HelpRouteImport } from './routes/help'
 import { Route as ScanRouteImport } from './routes/scan'
+import { Route as SettingsRouteImport } from './routes/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AskRoute = AskRouteImport.update({
+  id: '/ask',
+  path: '/ask',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentsRoute = DocumentsRouteImport.update({
@@ -29,44 +38,100 @@ const FeeguardRoute = FeeguardRouteImport.update({
   path: '/feeguard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GuestRoute = GuestRouteImport.update({
+  id: '/guest',
+  path: '/guest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HelpRoute = HelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScanRoute = ScanRouteImport.update({
   id: '/scan',
   path: '/scan',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
   '/documents': typeof DocumentsRoute
   '/feeguard': typeof FeeguardRoute
+  '/guest': typeof GuestRoute
+  '/help': typeof HelpRoute
   '/scan': typeof ScanRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
   '/documents': typeof DocumentsRoute
   '/feeguard': typeof FeeguardRoute
+  '/guest': typeof GuestRoute
+  '/help': typeof HelpRoute
   '/scan': typeof ScanRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ask': typeof AskRoute
   '/documents': typeof DocumentsRoute
   '/feeguard': typeof FeeguardRoute
+  '/guest': typeof GuestRoute
+  '/help': typeof HelpRoute
   '/scan': typeof ScanRoute
+  '/settings': typeof SettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/documents' | '/feeguard' | '/scan'
+  fullPaths:
+    | '/'
+    | '/ask'
+    | '/documents'
+    | '/feeguard'
+    | '/guest'
+    | '/help'
+    | '/scan'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/documents' | '/feeguard' | '/scan'
-  id: '__root__' | '/' | '/documents' | '/feeguard' | '/scan'
+  to:
+    | '/'
+    | '/ask'
+    | '/documents'
+    | '/feeguard'
+    | '/guest'
+    | '/help'
+    | '/scan'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/ask'
+    | '/documents'
+    | '/feeguard'
+    | '/guest'
+    | '/help'
+    | '/scan'
+    | '/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AskRoute: typeof AskRoute
   DocumentsRoute: typeof DocumentsRoute
   FeeguardRoute: typeof FeeguardRoute
+  GuestRoute: typeof GuestRoute
+  HelpRoute: typeof HelpRoute
   ScanRoute: typeof ScanRoute
+  SettingsRoute: typeof SettingsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -76,6 +141,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ask': {
+      id: '/ask'
+      path: '/ask'
+      fullPath: '/ask'
+      preLoaderRoute: typeof AskRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documents': {
@@ -92,6 +164,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeeguardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/guest': {
+      id: '/guest'
+      path: '/guest'
+      fullPath: '/guest'
+      preLoaderRoute: typeof GuestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/help': {
+      id: '/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof HelpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scan': {
       id: '/scan'
       path: '/scan'
@@ -99,14 +185,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ScanRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AskRoute: AskRoute,
   DocumentsRoute: DocumentsRoute,
   FeeguardRoute: FeeguardRoute,
+  GuestRoute: GuestRoute,
+  HelpRoute: HelpRoute,
   ScanRoute: ScanRoute,
+  SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

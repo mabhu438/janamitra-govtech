@@ -34,7 +34,7 @@ function HelpPage() {
     if (!department.trim()) { setError(t("help.error.dept")); return; }
     if (!facts.trim()) { setError(t("help.error.facts")); return; }
     if (docRef.trim() && !consent) { setError(t("help.error.consent")); return; }
-    setDraft(buildGrievanceDraft({ department, facts, docRef: consent ? docRef : undefined }));
+    setDraft(buildGrievanceDraft({ department, facts, ...(consent ? { docRef } : {}) }));
     setError("");
     setCopied(false);
   };

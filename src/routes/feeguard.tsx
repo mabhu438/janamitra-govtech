@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/feeguard")({
   validateSearch: (search: Record<string, unknown>) => ({
-    shown: typeof search.shown === "number" ? search.shown : undefined,
+    shown: typeof search["shown"] === "number" ? search["shown"] : undefined,
   }),
   head: () => ({
     meta: [
